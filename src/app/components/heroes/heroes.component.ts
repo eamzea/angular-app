@@ -4,18 +4,21 @@ import { Router } from "@angular/router";
 
 @Component({
   selector: "app-heroes",
-  templateUrl: "./heroes.component.html",
-  styleUrls: ["./heroes.component.css"]
+  templateUrl: "./heroes.component.html"
 })
 export class HeroesComponent implements OnInit {
   heroes: Hero[] = [];
-  constructor(private _heroesService: HeroesService, private router: Router) {}
+
+  constructor(private _heroesService: HeroesService, private router: Router) {
+    // console.log("constructor");
+  }
 
   ngOnInit() {
     this.heroes = this._heroesService.getHeroes();
+    // console.log( this.heroes );
   }
 
   verHeroe(idx: number) {
-    this.router.navigate(["/hero", idx]);
+    this.router.navigate(["/heroe", idx]);
   }
 }

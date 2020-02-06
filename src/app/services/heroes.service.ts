@@ -62,7 +62,7 @@ export class HeroesService {
   ];
 
   constructor() {
-    console.log("Servicio listo para usar");
+    console.log("Servicio listo para usar!!!");
   }
 
   getHeroes(): Hero[] {
@@ -72,6 +72,24 @@ export class HeroesService {
   getHero(idx: string) {
     return this.heroes[idx];
   }
+
+  buscarHeroes(termino: string): Hero[] {
+    let heroesArr: Hero[] = [];
+    termino = termino.toLowerCase();
+
+    for (let i = 0; i < this.heroes.length; i++) {
+      let heroe = this.heroes[i];
+
+      let nombre = heroe.nombre.toLowerCase();
+
+      if (nombre.indexOf(termino) >= 0) {
+        heroe.idx = i;
+        heroesArr.push(heroe);
+      }
+    }
+
+    return heroesArr;
+  }
 }
 
 export interface Hero {
@@ -80,4 +98,5 @@ export interface Hero {
   img: string;
   aparicion: string;
   casa: string;
+  idx?: number;
 }
